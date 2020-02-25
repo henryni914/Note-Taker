@@ -54,7 +54,7 @@ var handleNoteSave = function() {
   var newNote = {
     title: $noteTitle.val(),
     text: $noteText.val(),
-    id: 1
+    id: Math.floor(Math.random() * Math.floor(1000000)),
   };
 
   saveNote(newNote).then(function(data) {
@@ -71,11 +71,10 @@ var handleNoteDelete = function(event) {
   var note = $(this)
     .parent(".list-group-item")
     .data();
-
+  console.log(note);
   if (activeNote.id === note.id) {
     activeNote = {};
   }
-
   deleteNote(note.id).then(function() {
     getAndRenderNotes();
     renderActiveNote();
